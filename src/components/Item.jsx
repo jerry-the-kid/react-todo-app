@@ -6,6 +6,11 @@ export default function Item(props) {
 
   const handleClick = function () {
     setIsDone(!isDone);
+    props.onDone(props.id);
+  };
+
+  const handleCloseClick = function () {
+    props.onDelete(props.id);
   };
 
   const roundBoxTheme = function () {
@@ -31,11 +36,17 @@ export default function Item(props) {
           }`}
         ></span>
         <label htmlFor="chk1-label" className={`${isDone && "done"}`}>
-          the word word on
+          {props.value}
         </label>
       </div>
       <div className="todo-app__icon-close-box">
-        <img className="todo-app__icon-close" src={closeIcon}></img>
+        <img
+          tabIndex="1"
+          onClick={handleCloseClick}
+          className="todo-app__icon-close"
+          src={closeIcon}
+          alt="Delete To Do"
+        ></img>
       </div>
     </li>
   );

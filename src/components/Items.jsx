@@ -4,9 +4,16 @@ import Item from "./Item";
 export default function Items(props) {
   return (
     <ul className="todo-app__items">
-      <Item isDarkTheme={props.isDarkTheme} />
-      <Item isDarkTheme={props.isDarkTheme} />
-      <Item isDarkTheme={props.isDarkTheme} />
+      {props.items.map((item, index) => (
+        <Item
+          key={index}
+          id={index}
+          isDarkTheme={props.isDarkTheme}
+          value={item.value}
+          onDone={props.onDone}
+          onDelete={props.onDelete}
+        />
+      ))}
     </ul>
   );
 }

@@ -1,54 +1,53 @@
-import React from "react";
-import moonIcon from "../images/icon-moon.svg";
-import sunIcon from "../images/icon-sun.svg";
+import React, { useState } from "react";
+
+import InputForm from "./InputForm";
 import Items from "./Items";
+import Tittle from "./Tittle";
 import Choices from "./Choices";
 
 export default function Todo(props) {
-  const handlerKeyPress = function (e) {
-    console.log(e.key);
-    if (e.key === "Enter" || e.key === " ") {
-      props.setTheme();
-    }
-  };
+  const [todoList, setTodoList] = useState([]);
+
+  function addTodo(input) {
+    setTodoList((prevValue) => {
+      return [...prevValue, input];
+    });
+  }
+
+  function changeToDone(id) {
+    setTodoList((prevValue) => {
+      return prevValue.map((item, index) => {
+        const isDone = id === index ? !item.done : item.done;
+        return {
+          value: item.value,
+          done: isDone,
+        };
+      });
+    });
+  }
+
+  function deleteNote(id) {
+    setTodoList((prevValue) => {
+      return prevValue.filter((item, index) => {
+        if (index != id) return item;
+      });
+    });
+  }
 
   return (
     <div className="todo-app">
-      <div className="todo-app__title">
-        <h1 className="todo-app__heading">todo</h1>
-        <img
-          tabIndex="1"
-          className="todo-app__toggle"
-          src={props.isDarkTheme ? sunIcon : moonIcon}
-          alt="theme-icon"
-          onKeyDown={handlerKeyPress}
-          onClick={() => props.setTheme()}
-        />
-      </div>
-
-      <form
-        className={`todo-app__form  ${props.isDarkTheme ? "dark" : " light"}`}
-      >
-        <span
-          className={`todo-app__round-box ${
-            props.isDarkTheme
-              ? "todo-app__round-box--dark"
-              : " todo-app__round-box--light"
-          }`}
-        ></span>
-        <input
-          type="text"
-          className="todo-app__input"
-          aria-label="input-field"
-          placeholder="Create a new todo..."
-        ></input>
-      </form>
-
+      <Tittle isDarkTheme={props.isDarkTheme} setTheme={props.setTheme} />
+      <InputForm isDarkTheme={props.isDarkTheme} onAdd={addTodo} />
       {/* main */}
       <div
         className={`todo-app__list  ${props.isDarkTheme ? "dark" : " light"}`}
       >
-        <Items isDarkTheme={props.isDarkTheme} />
+        <Items
+          isDarkTheme={props.isDarkTheme}
+          items={todoList}
+          onDone={changeToDone}
+          onDelete={deleteNote}
+        />
         <Choices isDarkTheme={props.isDarkTheme} />
       </div>
     </div>
