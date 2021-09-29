@@ -1,0 +1,188 @@
+.todo-app {
+  width: calc(min(55rem, 85%));
+  margin-top: 8rem;
+  z-index: 2;
+  //Heading
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+  }
+
+  &__heading {
+    font-size: 3.75rem;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    color: #ffffff;
+  }
+
+  &__toggle {
+    width: 2.25rem;
+    cursor: pointer;
+  }
+
+  //Input Field
+  &__form {
+    display: flex;
+    align-items: center;
+    padding: 0 2.5rem;
+    border-radius: 4px;
+    margin-bottom: 2.5rem;
+  }
+
+  &__round-box {
+    display: block;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 100%;
+
+    &--color {
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(../../images/icon-check.svg),
+        linear-gradient(to top right, $color-gradient-1, $color-gradient-2);
+      // background-size: unset, cover;
+    }
+
+    &--light {
+      border: 1px solid rgba($color-grayish-blue-3, 0.2);
+    }
+
+    &--dark {
+      border: 1px solid rgba($color-grayish-blue-3, 0.8);
+    }
+  }
+
+  &__input {
+    display: inline-block;
+    padding: 2rem 0 2rem 2rem;
+    flex-grow: 1;
+    font-weight: 400;
+
+    font-family: inherit;
+    outline: none;
+    border: none;
+    background-color: inherit;
+    font-size: inherit;
+    color: inherit;
+  }
+
+  //Main
+  &__list {
+    border-radius: 4px;
+  }
+
+  &__items {
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // padding-right: 2.5rem;
+
+    // border-bottom: 1px solid rgba($color-black, 0.1);
+    // border-bottom: 1px solid rgba($color-light-orange, 0.1);
+
+    &--light {
+      border-bottom: 1px solid rgba($color-black, 0.1);
+    }
+
+    &--dark {
+      border-bottom: 1px solid rgba($color-light-orange, 0.1);
+    }
+  }
+
+  &__note {
+    cursor: pointer;
+    width: 86%;
+    padding: 1.75rem 0rem 1.75rem 2.5rem;
+    display: grid;
+    align-items: center;
+    align-content: center;
+    grid-template-columns: auto 1fr;
+
+    & span {
+      margin-right: 2.5rem;
+    }
+
+    & label,
+    & span {
+      cursor: pointer;
+    }
+  }
+
+  &__icon-close-box {
+    width: 14%;
+    opacity: 0;
+    transition: opacity 0.6s;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__icon-close {
+    height: 1.75rem;
+    cursor: pointer;
+  }
+
+  &__item:hover &__icon-close-box {
+    opacity: 1;
+  }
+
+  //Choice
+  &__choices {
+    display: flex;
+    padding: 2rem 2.5rem;
+    justify-content: space-between;
+    align-items: center;
+
+    & p {
+      font-size: 1.4rem;
+    }
+
+    &--dark {
+      color: $color-grayish-blue-1;
+    }
+
+    &--light {
+      color: $color-gray-3;
+    }
+  }
+
+  &__btn {
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.4s, opacity 0.4s;
+
+    &--dark {
+      &:hover {
+        color: white;
+      }
+    }
+
+    &--light {
+      &:hover {
+        color: $color-grayish-blue-3;
+      }
+    }
+
+    &--opacity {
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__btn-box > button:not(:last-child) {
+    margin-right: 2rem;
+  }
+}

@@ -1,0 +1,16 @@
+.dark {
+  background-color: $color-dark-blue;
+}
+
+.light {
+  background-color: #ffffff;
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.active {
+  color: $bright-blue;
+}

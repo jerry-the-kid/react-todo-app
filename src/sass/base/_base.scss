@@ -1,0 +1,44 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.8rem;
+
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+
+  &--light {
+    background-color: $color-light-orange;
+    color: $color-dark-gray-4;
+  }
+
+  &--dark {
+    background-color: $color-black;
+    color: $color-light-purple;
+  }
+}
