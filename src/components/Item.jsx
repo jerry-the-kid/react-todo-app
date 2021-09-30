@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import closeIcon from "../images/icon-cross.svg";
 
 export default function Item(props) {
