@@ -9,6 +9,12 @@ export default function Item(props) {
     props.onDelete(props.id);
   };
 
+  function handleKeyPress(e) {
+    if (e.key === "Enter" || e.key === " ") {
+      handleClick();
+    }
+  }
+
   const roundBoxTheme = function () {
     return props.isDarkTheme
       ? "todo-app__round-box--dark"
@@ -27,6 +33,7 @@ export default function Item(props) {
           aria-checked={props.done}
           tabIndex="0"
           aria-labelledby={`chk${props.index}-label`}
+          onKeyDown={handleKeyPress}
           className={`todo-app__round-box ${roundBoxTheme()}   ${
             props.done && "todo-app__round-box--color "
           }`}
@@ -40,7 +47,7 @@ export default function Item(props) {
       </div>
       <div className="todo-app__icon-close-box">
         <img
-          tabIndex="1"
+          tabIndex="0"
           onClick={handleCloseClick}
           className="todo-app__icon-close"
           src={closeIcon}
