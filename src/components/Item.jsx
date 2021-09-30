@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import closeIcon from "../images/icon-cross.svg";
 
 export default function Item(props) {
-  const [isDone, setIsDone] = useState(false);
-
   const handleClick = function () {
-    setIsDone(!isDone);
     props.onDone(props.id);
   };
 
@@ -28,14 +25,17 @@ export default function Item(props) {
       <div className="todo-app__note" onClick={handleClick}>
         <span
           role="checkbox"
-          aria-checked={isDone}
+          aria-checked={props.done}
           tabIndex="0"
-          aria-labelledby="chk1-label"
+          aria-labelledby={`chk${props.index}-label`}
           className={`todo-app__round-box ${roundBoxTheme()}   ${
-            isDone && "todo-app__round-box--color "
+            props.done && "todo-app__round-box--color "
           }`}
         ></span>
-        <label htmlFor="chk1-label" className={`${isDone && "done"}`}>
+        <label
+          htmlFor={`chk${props.index}-label`}
+          className={`${props.done && "done"}`}
+        >
           {props.value}
         </label>
       </div>

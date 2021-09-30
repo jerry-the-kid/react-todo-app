@@ -1,19 +1,15 @@
 import React from "react";
-import Item from "./Item";
+import All from "./renderMethod/All";
+import Filter from "./renderMethod/Filter";
 
 export default function Items(props) {
   return (
     <ul className="todo-app__items">
-      {props.items.map((item, index) => (
-        <Item
-          key={index}
-          id={index}
-          isDarkTheme={props.isDarkTheme}
-          value={item.value}
-          onDone={props.onDone}
-          onDelete={props.onDelete}
-        />
-      ))}
+      {props.choice === "All" ? (
+        <All attr={props} />
+      ) : (
+        <Filter attr={props} type={props.choice} />
+      )}
     </ul>
   );
 }

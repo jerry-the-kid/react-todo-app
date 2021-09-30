@@ -7,6 +7,11 @@ import Choices from "./Choices";
 
 export default function Todo(props) {
   const [todoList, setTodoList] = useState([]);
+  const [choice, setChoice] = useState("All");
+
+  function changeChoices(data) {
+    setChoice(data);
+  }
 
   function addTodo(input) {
     setTodoList((prevValue) => {
@@ -47,8 +52,13 @@ export default function Todo(props) {
           items={todoList}
           onDone={changeToDone}
           onDelete={deleteNote}
+          choice={choice}
         />
-        <Choices isDarkTheme={props.isDarkTheme} listLength={todoList.length} />
+        <Choices
+          onRender={changeChoices}
+          isDarkTheme={props.isDarkTheme}
+          list={todoList}
+        />
       </div>
     </div>
   );

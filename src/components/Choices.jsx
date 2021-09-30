@@ -9,13 +9,23 @@ export default function Choices(props) {
     return props.isDarkTheme ? `${text}--dark` : `${text}--light`;
   };
 
+  const countList = function () {
+    const countDone = props.list.reduce((acc, el) => {
+      if (el.done === false) return acc + 1;
+      else return acc + 0;
+    }, 0);
+
+    return countDone;
+  };
+
   const changePressedBtn = function (value) {
     setPressedBtn(value);
+    props.onRender(value);
   };
 
   return (
     <div className={`todo-app__choices  ${changeTheme("todo-app__choices")}`}>
-      <p>{props.listLength} items left</p>
+      <p>{countList()} items left</p>
 
       <div className="todo-app__btn-box">
         {arrayBtnName.map((el, index) => (
