@@ -40,6 +40,7 @@ export default function Choices(props) {
         ))}
       </div>
       <button
+        onClick={() => props.onDelete()}
         className={`todo-app__btn todo-app__btn--opacity ${changeTheme(
           "todo-app__btn"
         )}`}

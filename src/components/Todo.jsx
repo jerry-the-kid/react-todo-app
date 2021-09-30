@@ -31,6 +31,14 @@ export default function Todo(props) {
     });
   }
 
+  function deleteDoneTask() {
+    setTodoList((prevValue) => {
+      return prevValue.filter((item) => {
+        return item.done === false;
+      });
+    });
+  }
+
   function deleteNote(id) {
     setTodoList((prevValue) => {
       return prevValue.filter((_, index) => {
@@ -58,6 +66,7 @@ export default function Todo(props) {
           onRender={changeChoices}
           isDarkTheme={props.isDarkTheme}
           list={todoList}
+          onDelete={deleteDoneTask}
         />
       </div>
     </div>

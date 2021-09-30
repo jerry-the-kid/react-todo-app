@@ -3,10 +3,13 @@ import Cover from "./components/Cover";
 import Todo from "./components/Todo";
 
 function App() {
-  const [darkTheme, setTheme] = useState(true);
+  // localStorage.clear();
+  let theme = localStorage.getItem("darkTheme") === "true";
+  const [darkTheme, setTheme] = useState(theme);
 
   const changeTheme = function () {
     setTheme(!darkTheme);
+    localStorage.setItem("darkTheme", !darkTheme);
   };
 
   return (
