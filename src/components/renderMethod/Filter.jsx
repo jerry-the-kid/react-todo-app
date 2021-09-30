@@ -4,18 +4,13 @@ import Item from "../Item";
 export default function Filter(props) {
   const state = props.type === "Active" ? false : true;
 
-  console.log(props.attr.items, "Hello");
   const itemsFilter = props.attr.items.filter((item) => item.done === state);
-  const indexContainer = props.attr.items
-    .map((item, index) => {
-      if (item.done === state) {
-        console.log(index);
-        return index;
-      }
-    })
-    .filter(function (element) {
-      return element !== undefined;
-    });
+
+  const indexContainer = [];
+
+  props.attr.items.forEach(function (el, i) {
+    if (el.done === state) indexContainer.push(i);
+  });
 
   return itemsFilter.map((item, index) => {
     return (
