@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import InputForm from "./InputForm";
 import Items from "./Items";
@@ -6,8 +6,13 @@ import Tittle from "./Tittle";
 import Choices from "./Choices";
 
 export default function Todo(props) {
-  const [todoList, setTodoList] = useState([]);
+  const storage = localStorage.getItem("todoList");
+  const [todoList, setTodoList] = useState(storage ? JSON.parse(storage) : []);
   const [choice, setChoice] = useState("All");
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+  });
 
   function changeChoices(data) {
     setChoice(data);
